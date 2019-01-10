@@ -13,7 +13,7 @@ data "terraform_remote_state" "resource_groups" {
 resource "azurerm_network_security_group" "prod-sg" {
   name                = "ProdSecurityGroup"
   location            = "${data.terraform_remote_state.resource_groups.location}"
-  resource_group_name = "dev-rg"
+  resource_group_name = "${var.resource_group_name}"
 
   security_rule {
     name                       = "MySQL"
